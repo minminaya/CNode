@@ -1,9 +1,10 @@
-package com.minminaya.cnode;
+package com.minminaya.cnode.ui.activity;
 
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.view.ViewPager;
 
+import com.minminaya.cnode.R;
 import com.minminaya.cnode.base.BaseActivity;
 
 import butterknife.BindView;
