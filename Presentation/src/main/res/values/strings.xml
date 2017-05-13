@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">CNode</string>
-    <string name="title_home">home</string>
-    <string name="title_category">category</string>
-    <string name="title_me">me</string>
+    <!--<string name="title_home">home</string>-->
+    <!--<string name="title_category">category</string>-->
+    <!--<string name="title_me">me</string>-->
+    <string name="title_star">star</string>
+    <string name="title_share">share</string>
+    <string name="title_question">question</string>
+    <string name="title_offer">offer</string>
 </resources>

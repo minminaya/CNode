@@ -1,5 +1,4 @@
 apply plugin: 'com.android.library'
-
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
@@ -28,8 +27,7 @@ dependencies {
     })
     testCompile 'junit:junit:4.12'
     //butterknife
-    compile 'com.jakewharton:butterknife:8.5.1'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
+    compile 'com.jakewharton:butterknife:7.0.1'
     //这个包里集成了okhttp3.6
     compile 'com.squareup.retrofit2:retrofit:2.2.0'
     //使retrofit2支持gson的转换
@@ -42,6 +40,8 @@ dependencies {
     compile 'io.reactivex.rxjava2:rxjava:2.0.1'
     //glide显示图片
     compile 'com.github.bumptech.glide:glide:3.7.0'
+    //圆logo
+    compile 'com.makeramen:roundedimageview:2.3.0'
 
     compile 'com.android.support:design:25.3.1'
     compile 'com.android.support:recyclerview-v7:25.3.1'

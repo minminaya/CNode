@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/item_tab_home"
-        android:icon="@drawable/ic_tab_home"
-        android:title="@string/title_home" />
+        android:id="@+id/item_tab_star"
+        android:icon="@drawable/ic_tab_star"
+        android:title="@string/title_star" />
     <item
-        android:id="@+id/item_tab_search"
-        android:icon="@drawable/ic_tab_search"
-        android:title="@string/title_category" />
+        android:id="@+id/item_tab_share"
+        android:icon="@drawable/ic_tab_share"
+        android:title="@string/title_share" />
     <item
-        android:id="@+id/item_tab_me"
-        android:icon="@drawable/ic_tab_me"
-        android:title="@string/title_me" />
+        android:id="@+id/item_tab_question"
+        android:icon="@drawable/ic_tab_question"
+        android:title="@string/title_question" />
+    <item
+        android:id="@+id/item_tab_offer"
+        android:icon="@drawable/ic_tab_offer"
+        android:title="@string/title_offer" />
 </menu>

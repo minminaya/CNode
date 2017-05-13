@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="90dp"
+    android:orientation="horizontal">
+
+    <RelativeLayout
+        android:layout_width="52dp"
+        android:layout_height="90dp"
+        android:layout_marginStart="8dp"
+        android:gravity="center_horizontal">
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/category_rank_pic"
+            android:layout_width="70dp"
+            android:layout_height="20dp"
+            android:layout_margin="6dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_item_top"
+            app:riv_corner_radius="5dp" />
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/user_pic"
+            android:layout_width="55dp"
+            android:layout_height="50dp"
+            android:layout_below="@id/category_rank_pic"
+            android:layout_marginTop="3dp"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/mz_avastar_person_3"
+            app:riv_corner_radius="10dp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp">
+
+        <TextView
+            android:id="@+id/tv_item_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="饿了么大前端Node.js进阶教材，国际歌发发发顺丰"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <RelativeLayout
+            android:id="@+id/layout_mid"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:layout_below="@+id/tv_item_title"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="7dp">
+
+            <TextView
+                android:id="@+id/text_item_user_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="fengmk2"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+
+
+
+            <TextView
+                android:id="@+id/anchor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="3dp"
+                android:layout_toLeftOf="@+id/text_item_total_click"
+                android:text="/"
+                android:textColor="@color/dimgray"
+                android:textSize="14sp" />
+            <TextView
+                android:id="@+id/text_item_reply"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="3dp"
+                android:layout_toLeftOf="@id/anchor"
+                android:text="98"
+                android:textColor="@color/green"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/text_item_total_click"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="10dp"
+                android:text="15292"
+                android:textColor="@color/dimgray"
+                android:textSize="14sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_below="@id/layout_mid"
+            android:layout_marginStart="3dp">
+
+            <TextView
+                android:id="@+id/te_item_first_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@+id/anchor2"
+                android:text="2017-04-06 17:17:36" />
+
+            <TextView
+                android:id="@+id/anchor2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="创建于:" />
+
+            <TextView
+                android:id="@+id/text_item_last_reply"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="10dp"
+                android:text="5分钟前" />
+        </RelativeLayout>
+    </RelativeLayout>
+</LinearLayout>
