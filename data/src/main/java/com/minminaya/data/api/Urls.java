@@ -5,5 +5,5 @@ package com.minminaya.data.api;
  */
 
 public class Urls {
-    public static final String BASE_URL = "https://cnodejs.org/api/v1";
+    public static final String BASE_URL = "https://cnodejs.org/api/v1/";
 }
