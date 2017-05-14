@@ -4,20 +4,38 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.minminaya.cnode.R;
 import com.minminaya.cnode.adapter.ViewPagerAdapter;
 import com.minminaya.cnode.base.BaseActivity;
 import com.minminaya.cnode.ui.fragment.CategoryListFragment;
+import com.minminaya.data.http.NetWork;
+import com.minminaya.data.model.TabModel;
 
+import java.util.List;
+
+import butterknife.Bind;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 
 public class MainActivity extends BaseActivity {
-//    @BindView(R.id.content_ViewPager)
+    @Bind(R.id.content_ViewPager)
     ViewPager mContentViewPager;
-//    @BindView(R.id.bottomNavigationView)
+    @Bind(R.id.bottomNavigationView)
     BottomNavigationView mBottomNavigationView;
+
+
+
+
+
+
+
 
     @Override
     public void unBind() {
@@ -32,6 +50,8 @@ public class MainActivity extends BaseActivity {
         viewPagerAdapter.addFragment(CategoryListFragment.newInstance());
         viewPagerAdapter.addFragment(CategoryListFragment.newInstance());
         mContentViewPager.setAdapter(viewPagerAdapter);
+
+
     }
 
     @Override

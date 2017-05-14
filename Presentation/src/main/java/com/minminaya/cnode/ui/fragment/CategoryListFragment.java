@@ -6,17 +6,27 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.minminaya.cnode.R;
 import com.minminaya.cnode.adapter.CategoryAdapter;
 import com.minminaya.cnode.base.BaseFragment;
 import com.minminaya.cnode.mvp.view.MvpView;
+import com.minminaya.data.http.NetWork;
+import com.minminaya.data.model.TabModel;
+
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 
 /**
@@ -32,6 +42,30 @@ public class CategoryListFragment extends BaseFragment implements MvpView {
     SwipeRefreshLayout swipeRefreshLayout;
 
 
+    Observer<TabModel> observer = new Observer<TabModel>() {
+        @Override
+        public void onSubscribe(Disposable d) {
+
+        }
+
+        @Override
+        public void onNext(TabModel value) {
+            Toast.makeText(getContext(), "数据加载成功", Toast.LENGTH_SHORT).show();
+
+            Log.e("test", value.getData().get(1).getContent());
+        }
+
+        @Override
+        public void onError(Throwable e) {
+            Toast.makeText(getContext(), "数据加载失败", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onComplete() {
+
+        }
+    };
+
     private CategoryAdapter mAdapter = new CategoryAdapter();
 
 
@@ -46,7 +80,11 @@ public class CategoryListFragment extends BaseFragment implements MvpView {
 
     @Override
     public void setListeners() {
-
+        NetWork.getCnodeApi()
+                .loadTopicHomeItem(1,20,false)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(observer);
     }
 
     @Override
@@ -61,7 +99,6 @@ public class CategoryListFragment extends BaseFragment implements MvpView {
 
     @Override
     public void iniView(View view) {
-//        mCategoryRecycleView = (RecyclerView) view.findViewById(R.id.category_recycleView);
 
         mCategoryRecycleView.setLayoutManager(new LinearLayoutManager(getContext()));
         mCategoryRecycleView.setHasFixedSize(true);
@@ -80,9 +117,4 @@ public class CategoryListFragment extends BaseFragment implements MvpView {
     }
 
 
-//    @Override
-//    public void onDestroyView() {
-//        super.onDestroyView();
-//        ButterKnife.unbind(this);
-//    }
 }

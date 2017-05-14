@@ -1,5 +1,6 @@
 package com.minminaya.data.model;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import com.minminaya.data.model.entity.DataBean;
 
@@ -10,9 +11,11 @@ import java.util.List;
  */
 
 public class TabModel {
-
+    @SerializedName("success")
+    @Expose
     private boolean success;
-    //    @SerializedName("data")
+    @SerializedName("data")
+    @Expose
     private List<DataBean> data;
 
     public boolean isSuccess() {

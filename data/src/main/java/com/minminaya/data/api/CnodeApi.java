@@ -2,6 +2,8 @@ package com.minminaya.data.api;
 
 import com.minminaya.data.model.TabModel;
 
+import java.util.List;
+
 import io.reactivex.Observable;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
@@ -13,8 +15,6 @@ import retrofit2.http.Query;
 public interface CnodeApi {
 
     /**
-     *
-     *
      *
      *  获取首页文章列表
      *
