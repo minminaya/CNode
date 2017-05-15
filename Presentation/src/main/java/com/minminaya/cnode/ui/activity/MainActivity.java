@@ -6,6 +6,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.minminaya.cnode.R;
@@ -62,6 +63,7 @@ public class MainActivity extends BaseActivity {
 
                 switch (item.getItemId()){
                     case R.id.item_tab_star:
+                        mContentViewPager.setVisibility(View.VISIBLE);
                         mContentViewPager.setCurrentItem(0);
                     break;
                     case R.id.item_tab_share:

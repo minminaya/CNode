@@ -1,15 +1,12 @@
 package com.minminaya.cnode.ui.fragment;
 
 
-import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.minminaya.cnode.R;
@@ -18,11 +15,10 @@ import com.minminaya.cnode.base.BaseFragment;
 import com.minminaya.cnode.mvp.view.MvpView;
 import com.minminaya.data.http.NetWork;
 import com.minminaya.data.model.TabModel;
+import com.minminaya.library.utils.DipConvertUtils;
 
-import java.util.List;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
@@ -104,6 +100,8 @@ public class CategoryListFragment extends BaseFragment implements MvpView {
         mCategoryRecycleView.setHasFixedSize(true);
         mCategoryRecycleView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
         mCategoryRecycleView.setAdapter(mAdapter);
+        //整体向下偏移
+        swipeRefreshLayout.setProgressViewOffset(true,0, DipConvertUtils.dip2px(getContext(),80));
     }
 
     @Override

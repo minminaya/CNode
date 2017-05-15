@@ -24,6 +24,8 @@ public class CategoryAdapter extends RecyclerView.Adapter {
 
         if (viewType == C.TYPE_ITEM) {
             return new CategoryViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_category_list, parent, false));
+        } else if (viewType == C.TYPE_TOP) {
+            return new TopViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_category_top, parent, false));
         } else {
             return new FooterViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_category_foot, parent, false));
         }
@@ -41,6 +43,9 @@ public class CategoryAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemViewType(int position) {
+        if (position == 0) {
+            return C.TYPE_TOP;
+        }
         if (position < 19) {
             // TODO: 2017/5/13 这里size要添加
             return C.TYPE_ITEM;
@@ -78,6 +83,13 @@ public class CategoryAdapter extends RecyclerView.Adapter {
     public class FooterViewHolder extends RecyclerView.ViewHolder {
 
         public FooterViewHolder(View itemView) {
+            super(itemView);
+        }
+    }
+
+    public class TopViewHolder extends RecyclerView.ViewHolder {
+
+        public TopViewHolder(View itemView) {
             super(itemView);
         }
     }
