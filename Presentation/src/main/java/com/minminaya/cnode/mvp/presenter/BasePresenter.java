@@ -4,7 +4,7 @@ import com.minminaya.cnode.mvp.view.MvpView;
 
 import io.reactivex.disposables.CompositeDisposable;
 
-/**
+/** presenter base类
  * Created by Niwa on 2017/5/13.
  */
 

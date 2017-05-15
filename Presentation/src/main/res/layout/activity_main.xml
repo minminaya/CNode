@@ -8,12 +8,14 @@
     android:fitsSystemWindows="false"
     android:orientation="vertical"
     tools:context="com.minminaya.cnode.ui.activity.MainActivity">
+
     <include layout="@layout/common_toolbar_create_topics" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <android.support.v4.view.ViewPager
+
+        <com.minminaya.cnode.widget.NotScollViewPager
             android:id="@+id/content_ViewPager"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -33,7 +35,6 @@
             app:itemBackground="@color/white"
             app:itemIconTint="@color/color_bottom_navigation"
             app:itemTextColor="@color/color_bottom_navigation"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
             app:menu="@menu/menu_bottom_navigation" />
     </RelativeLayout>
 

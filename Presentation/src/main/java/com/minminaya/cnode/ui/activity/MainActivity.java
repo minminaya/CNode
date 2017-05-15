@@ -46,10 +46,10 @@ public class MainActivity extends BaseActivity {
     @Override
     public void bind() {
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
-        viewPagerAdapter.addFragment(CategoryListFragment.newInstance());
-        viewPagerAdapter.addFragment(CategoryListFragment.newInstance());
-        viewPagerAdapter.addFragment(CategoryListFragment.newInstance());
-        viewPagerAdapter.addFragment(CategoryListFragment.newInstance());
+        viewPagerAdapter.addFragment(CategoryListFragment.newInstance("ask"));
+        viewPagerAdapter.addFragment(CategoryListFragment.newInstance("share"));
+        viewPagerAdapter.addFragment(CategoryListFragment.newInstance("job"));
+        viewPagerAdapter.addFragment(CategoryListFragment.newInstance("good"));
         mContentViewPager.setAdapter(viewPagerAdapter);
 
 
