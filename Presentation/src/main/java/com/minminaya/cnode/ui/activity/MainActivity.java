@@ -32,12 +32,6 @@ public class MainActivity extends BaseActivity {
     BottomNavigationView mBottomNavigationView;
 
 
-
-
-
-
-
-
     @Override
     public void unBind() {
 
@@ -51,8 +45,6 @@ public class MainActivity extends BaseActivity {
         viewPagerAdapter.addFragment(CategoryListFragment.newInstance("job"));
         viewPagerAdapter.addFragment(CategoryListFragment.newInstance("good"));
         mContentViewPager.setAdapter(viewPagerAdapter);
-
-
     }
 
     @Override

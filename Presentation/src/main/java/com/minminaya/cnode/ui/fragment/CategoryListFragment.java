@@ -18,6 +18,7 @@ import com.minminaya.cnode.mvp.presenter.TopicListPresenter;
 import com.minminaya.cnode.mvp.view.MvpView;
 import com.minminaya.data.http.NetWork;
 import com.minminaya.data.model.TabModel;
+import com.minminaya.data.model.entity.DataBean;
 import com.minminaya.library.utils.DipConvertUtils;
 
 
@@ -43,35 +44,10 @@ public class CategoryListFragment extends BaseFragment implements MvpView {
     @Bind(R.id.swipeRefreshLayout)
     SwipeRefreshLayout swipeRefreshLayout;
     private String mTab;
-    private List<TabModel> tabModelList = new ArrayList<>();
-    private TopicListPresenter mPresenter = new TopicListPresenter(getContext());
+    private List<DataBean> tabModelList = new ArrayList<>();
+    private TopicListPresenter mPresenter = new TopicListPresenter();
 
-
-    /*Observer<TabModel> observer = new Observer<TabModel>() {
-        @Override
-        public void onSubscribe(Disposable d) {
-
-        }
-
-        @Override
-        public void onNext(TabModel value) {
-            Toast.makeText(getContext(), "数据加载成功", Toast.LENGTH_SHORT).show();
-
-            Log.e("test", value.getData().get(1).getContent());
-        }
-
-        @Override
-        public void onError(Throwable e) {
-            Toast.makeText(getContext(), "数据加载失败", Toast.LENGTH_SHORT).show();
-        }
-
-        @Override
-        public void onComplete() {
-
-        }
-    };*/
-
-    private CategoryAdapter mAdapter = new CategoryAdapter();
+    private CategoryAdapter mAdapter;
 
 
     public static CategoryListFragment newInstance(String tab) {
@@ -102,11 +78,6 @@ public class CategoryListFragment extends BaseFragment implements MvpView {
 
     @Override
     public void setListeners() {
-//        NetWork.getCnodeApi()
-//                .loadTopicHomeItem(1,20,false)
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(observer);
 
         //入口
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -128,15 +99,17 @@ public class CategoryListFragment extends BaseFragment implements MvpView {
     public void bind() {
         mPresenter.attachView(this);
         mPresenter.setmTab(mTab);
+        mPresenter.setContext(getContext());
     }
 
     @Override
     public void iniView(View view) {
-
+//        mAdapter = new CategoryAdapter();
         mCategoryRecycleView.setLayoutManager(new LinearLayoutManager(getContext()));
         mCategoryRecycleView.setHasFixedSize(true);
         mCategoryRecycleView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
-        mCategoryRecycleView.setAdapter(mAdapter);
+//        Log.e("顺序", "iniView里");
+//        mCategoryRecycleView.setAdapter(mAdapter);
         //整体向下偏移
         swipeRefreshLayout.setProgressViewOffset(true, 0, DipConvertUtils.dip2px(getContext(), 80));
     }
@@ -147,7 +120,11 @@ public class CategoryListFragment extends BaseFragment implements MvpView {
         if (isRefresh) {
             tabModelList.clear();
         }
-        tabModelList.add(tabModel);
+        tabModelList.addAll(tabModel.getData());
+        mAdapter = new CategoryAdapter();
+        mAdapter.setTabModelList(tabModelList);
+
+        mCategoryRecycleView.setAdapter(mAdapter);
         mAdapter.notifyDataSetChanged();
     }
 

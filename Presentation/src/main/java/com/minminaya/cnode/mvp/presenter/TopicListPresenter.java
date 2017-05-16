@@ -29,9 +29,7 @@ public class TopicListPresenter extends BasePresenter<CategoryListFragment> impl
     private Context context;
     private Boolean isRefresh;
 
-    public TopicListPresenter(Context context) {
-        this.context = context;
-    }
+
 
     Observer<TabModel> observer = new Observer<TabModel>() {
         @Override
@@ -49,7 +47,7 @@ public class TopicListPresenter extends BasePresenter<CategoryListFragment> impl
                 getMvpView().onFailed(new Throwable("获取列表失败了"));
             }
 
-//            Toast.makeText(context, "数据加载onNext()", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "数据加载onNext()", Toast.LENGTH_SHORT).show();
             Log.e("test", tabModel.getData().get(1).getContent());
         }
 
@@ -131,6 +129,14 @@ public class TopicListPresenter extends BasePresenter<CategoryListFragment> impl
 
     public void setmLoading(boolean mLoading) {
         this.mLoading = mLoading;
+    }
+
+    public Context getContext() {
+        return context;
+    }
+
+    public void setContext(Context context) {
+        this.context = context;
     }
 
     @Override

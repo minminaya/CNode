@@ -1,15 +1,22 @@
 package com.minminaya.cnode.adapter;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.minminaya.cnode.C;
 import com.minminaya.cnode.R;
+import com.minminaya.data.model.TabModel;
+import com.minminaya.data.model.entity.DataBean;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -19,6 +26,18 @@ import butterknife.ButterKnife;
  */
 
 public class CategoryAdapter extends RecyclerView.Adapter {
+
+
+    private List<DataBean> tabModelList = new ArrayList<>();
+
+    public List<DataBean> getTabModelList() {
+        return tabModelList;
+    }
+
+    public void setTabModelList(List<DataBean> tabModelList) {
+        this.tabModelList = tabModelList;
+    }
+
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
@@ -34,6 +53,25 @@ public class CategoryAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
 
+
+        if (holder instanceof CategoryViewHolder) {
+            CategoryViewHolder categoryViewHolder = (CategoryViewHolder) holder;
+            DataBean dataBean = tabModelList.get(position);
+            categoryViewHolder.tvItemTitle.setText(dataBean.getTitle());
+            //用户名
+            categoryViewHolder.textItemUserTitle.setText(dataBean.getAuthor().getLoginname());
+            //用户头像
+            Glide.with(categoryViewHolder.itemView.getContext()).load(dataBean.getAuthor().getAvatar_url()).into(categoryViewHolder.userPic);
+            //总点击数量
+            categoryViewHolder.textItemTotalClick.setText(String.valueOf(dataBean.getVisit_count()));
+            //回复数量
+            categoryViewHolder.textItemReply.setText(String.valueOf(dataBean.getReply_count()));
+            categoryViewHolder.teItemFirstEdit.setText(dataBean.getCreate_at());
+//            Log.e("ooo", String.valueOf(tabModelList.size()));
+//            Log.e("o2", String.valueOf(dataBean.getReply_count()));
+        }
+
+
     }
 
     @Override
@@ -46,8 +84,7 @@ public class CategoryAdapter extends RecyclerView.Adapter {
         if (position == 0) {
             return C.TYPE_TOP;
         }
-        if (position < 19) {
-            // TODO: 2017/5/13 这里size要添加
+        if (position < 20) {
             return C.TYPE_ITEM;
         } else {
             return C.TYPE_FOOT;
@@ -59,12 +96,15 @@ public class CategoryAdapter extends RecyclerView.Adapter {
         RoundedImageView categoryRankPic;
         @Bind(R.id.user_pic)
         RoundedImageView userPic;
+
         @Bind(R.id.tv_item_title)
         TextView tvItemTitle;
         @Bind(R.id.text_item_user_title)
         TextView textItemUserTitle;
+
         @Bind(R.id.text_item_reply)
         TextView textItemReply;
+
         @Bind(R.id.text_item_total_click)
         TextView textItemTotalClick;
         @Bind(R.id.layout_mid)
@@ -77,6 +117,8 @@ public class CategoryAdapter extends RecyclerView.Adapter {
         public CategoryViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+//            textItemReply = (TextView) itemView.findViewById(R.id.text_item_reply);
+//            tvItemTitle = (TextView) itemView.findViewById(R.id.tv_item_title);
         }
     }
 
