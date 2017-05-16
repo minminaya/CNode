@@ -1,7 +1,7 @@
 package com.minminaya.cnode.adapter;
 
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,9 +11,9 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.minminaya.cnode.C;
+import com.minminaya.cnode.MyApplication;
 import com.minminaya.cnode.R;
 import com.minminaya.cnode.utils.FormatTimeUtils;
-import com.minminaya.data.model.TabModel;
 import com.minminaya.data.model.entity.DataBean;
 
 import java.util.ArrayList;
@@ -28,11 +28,11 @@ import butterknife.ButterKnife;
 
 public class CategoryAdapter extends RecyclerView.Adapter {
 
-
     private List<DataBean> tabModelList = new ArrayList<>();
+    private String mTab = null;
 
-    public List<DataBean> getTabModelList() {
-        return tabModelList;
+    public CategoryAdapter(String mTab) {
+        this.mTab = mTab;
     }
 
     public void setTabModelList(List<DataBean> tabModelList) {
@@ -57,7 +57,22 @@ public class CategoryAdapter extends RecyclerView.Adapter {
 
         if (holder instanceof CategoryViewHolder) {
             CategoryViewHolder categoryViewHolder = (CategoryViewHolder) holder;
-            DataBean dataBean = tabModelList.get(position);
+            DataBean dataBean = tabModelList.get(position - 1);
+            switch (mTab) {
+                case "ask":
+                    categoryViewHolder.categoryRankPic.setText("问答");
+                    break;
+                case "share":
+                    categoryViewHolder.categoryRankPic.setText("分享");
+                    break;
+                case "job":
+                    categoryViewHolder.categoryRankPic.setText("招聘");
+                    break;
+                default:
+                    categoryViewHolder.categoryRankPic.setTextColor(ContextCompat.getColor(MyApplication.getINSTANCE(), R.color.white));
+                    categoryViewHolder.categoryRankPic.setBackgroundResource(R.drawable.bg_topic_tag_nomal_green);
+                    break;
+            }
             categoryViewHolder.tvItemTitle.setText(dataBean.getTitle());
             //用户名
             categoryViewHolder.textItemUserTitle.setText(dataBean.getAuthor().getLoginname());
@@ -67,7 +82,6 @@ public class CategoryAdapter extends RecyclerView.Adapter {
             categoryViewHolder.textItemTotalClick.setText(String.valueOf(dataBean.getVisit_count()));
             //回复数量
             categoryViewHolder.textItemReply.setText(String.valueOf(dataBean.getReply_count()));
-
             //创建的时间
             categoryViewHolder.teItemFirstEdit.setText(FormatTimeUtils.convertTime(dataBean.getCreate_at()));
         }
@@ -77,7 +91,7 @@ public class CategoryAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-        return 20;
+        return tabModelList.size() + 2;
     }
 
     @Override
@@ -85,7 +99,7 @@ public class CategoryAdapter extends RecyclerView.Adapter {
         if (position == 0) {
             return C.TYPE_TOP;
         }
-        if (position < 20) {
+        if (position < tabModelList.size() + 1) {
             return C.TYPE_ITEM;
         } else {
             return C.TYPE_FOOT;
@@ -93,8 +107,9 @@ public class CategoryAdapter extends RecyclerView.Adapter {
     }
 
     public class CategoryViewHolder extends RecyclerView.ViewHolder {
+        //这里其实是TextView
         @Bind(R.id.category_rank_pic)
-        RoundedImageView categoryRankPic;
+        TextView categoryRankPic;
         @Bind(R.id.user_pic)
         RoundedImageView userPic;
 

@@ -4,25 +4,15 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import com.minminaya.cnode.R;
 import com.minminaya.cnode.adapter.ViewPagerAdapter;
 import com.minminaya.cnode.base.BaseActivity;
 import com.minminaya.cnode.ui.fragment.CategoryListFragment;
-import com.minminaya.data.http.NetWork;
-import com.minminaya.data.model.TabModel;
-
-import java.util.List;
 
 import butterknife.Bind;
-import io.reactivex.Observer;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.schedulers.Schedulers;
 
 
 public class MainActivity extends BaseActivity {
@@ -39,25 +29,28 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void bind() {
+
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
-        viewPagerAdapter.addFragment(CategoryListFragment.newInstance("ask"));
-        viewPagerAdapter.addFragment(CategoryListFragment.newInstance("share"));
-        viewPagerAdapter.addFragment(CategoryListFragment.newInstance("job"));
         viewPagerAdapter.addFragment(CategoryListFragment.newInstance("good"));
+        viewPagerAdapter.addFragment(CategoryListFragment.newInstance("share"));
+        viewPagerAdapter.addFragment(CategoryListFragment.newInstance("ask"));
+        viewPagerAdapter.addFragment(CategoryListFragment.newInstance("job"));
         mContentViewPager.setAdapter(viewPagerAdapter);
     }
 
     @Override
     public void setListeners() {
+
+        mContentViewPager.setVisibility(View.VISIBLE);
         mBottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-                switch (item.getItemId()){
+                switch (item.getItemId()) {
                     case R.id.item_tab_star:
-                        mContentViewPager.setVisibility(View.VISIBLE);
+//                        mContentViewPager.setVisibility(View.VISIBLE);
                         mContentViewPager.setCurrentItem(0);
-                    break;
+                        break;
                     case R.id.item_tab_share:
                         mContentViewPager.setCurrentItem(1);
                         break;
@@ -84,4 +77,5 @@ public class MainActivity extends BaseActivity {
     public int getContentView() {
         return R.layout.activity_main;
     }
+
 }

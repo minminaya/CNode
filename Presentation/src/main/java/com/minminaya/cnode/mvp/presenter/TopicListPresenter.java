@@ -46,7 +46,6 @@ public class TopicListPresenter extends BasePresenter<CategoryListFragment> impl
             }else{
                 getMvpView().onFailed(new Throwable("获取列表失败了"));
             }
-
             Toast.makeText(context, "数据加载onNext()", Toast.LENGTH_SHORT).show();
             Log.e("test", tabModel.getData().get(1).getContent());
         }
@@ -73,10 +72,10 @@ public class TopicListPresenter extends BasePresenter<CategoryListFragment> impl
     }
 
     private void getHomePage(int pageIndex, boolean refresh) {
-        if (mLoading) {
-            return;
-        }
-        mLoading = true;
+//        if (mLoading) {
+//            return;
+//        }
+//        mLoading = true;
         isRefresh = refresh;
         getObserveble(pageIndex)
                 .subscribeOn(Schedulers.io())
