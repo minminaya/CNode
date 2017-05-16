@@ -12,6 +12,7 @@ import com.bumptech.glide.Glide;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.minminaya.cnode.C;
 import com.minminaya.cnode.R;
+import com.minminaya.cnode.utils.FormatTimeUtils;
 import com.minminaya.data.model.TabModel;
 import com.minminaya.data.model.entity.DataBean;
 
@@ -66,9 +67,9 @@ public class CategoryAdapter extends RecyclerView.Adapter {
             categoryViewHolder.textItemTotalClick.setText(String.valueOf(dataBean.getVisit_count()));
             //回复数量
             categoryViewHolder.textItemReply.setText(String.valueOf(dataBean.getReply_count()));
-            categoryViewHolder.teItemFirstEdit.setText(dataBean.getCreate_at());
-//            Log.e("ooo", String.valueOf(tabModelList.size()));
-//            Log.e("o2", String.valueOf(dataBean.getReply_count()));
+
+            //创建的时间
+            categoryViewHolder.teItemFirstEdit.setText(FormatTimeUtils.convertTime(dataBean.getCreate_at()));
         }
 
 
